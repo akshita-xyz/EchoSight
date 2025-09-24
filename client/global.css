@@ -1,0 +1,142 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* Black + Blue theme */
+    --background: 0 0% 0%;
+    --foreground: 199 73% 76%;
+
+    --card: 220 14% 6%;
+    --card-foreground: 199 73% 76%;
+
+    --popover: 220 14% 6%;
+    --popover-foreground: 199 73% 76%;
+
+    --primary: 205 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 28% 14%;
+    --secondary-foreground: 199 73% 76%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 199 40% 65%;
+
+    --accent: 205 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 20%;
+    --input: 220 14% 20%;
+    --ring: 205 100% 60%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 199 73% 76%;
+    --sidebar-primary: 205 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 28% 14%;
+    --sidebar-accent-foreground: 199 73% 76%;
+    --sidebar-border: 220 14% 20%;
+    --sidebar-ring: 205 100% 60%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 199 73% 76%;
+
+    --card: 220 14% 6%;
+    --card-foreground: 199 73% 76%;
+
+    --popover: 220 14% 6%;
+    --popover-foreground: 199 73% 76%;
+
+    --primary: 205 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 28% 14%;
+    --secondary-foreground: 199 73% 76%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 199 40% 65%;
+
+    --accent: 205 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 20%;
+    --input: 220 14% 20%;
+    --ring: 205 100% 60%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 199 73% 76%;
+    --sidebar-primary: 205 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 28% 14%;
+    --sidebar-accent-foreground: 199 73% 76%;
+    --sidebar-border: 220 14% 20%;
+    --sidebar-ring: 205 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    @apply opacity-0 translate-y-6 transition duration-700 ease-out;
+  }
+  .reveal.inview {
+    @apply opacity-100 translate-y-0;
+  }
+  .shine {
+    position: relative;
+  }
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      600px 200px at calc(50% + var(--mx, 0) * 80px)
+        calc(0% + var(--my, 0) * 80px),
+      hsl(var(--accent) / 0.15),
+      transparent 60%
+    );
+  }
+  
+  /* Ensure content appears above background effects */
+  .content-layer {
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Smooth cursor trail */
+  .cursor-trail {
+    cursor: none;
+  }
+}
