@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Eye, Sparkles } from "lucide-react";
+import { TwinklingStars } from "@/components/ui/twinkling-stars";
 
 export default function SiteLayout() {
   const { pathname, hash } = useLocation();
@@ -35,10 +36,23 @@ export default function SiteLayout() {
 
       <header
         className={cn(
-          "sticky top-0 z-40 w-full border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+          "sticky top-0 z-40 w-full border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/60 relative overflow-hidden",
         )}
       >
-        <div className="container mx-auto flex h-16 items-center justify-between">
+        <TwinklingStars />
+        <div className="absolute inset-0 opacity-60">
+          <div className="absolute top-2 left-4 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
+          <div className="absolute top-4 right-8 w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse delay-100"></div>
+          <div className="absolute top-6 left-1/4 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-200"></div>
+          <div className="absolute top-3 right-1/3 w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+          <div className="absolute top-5 left-3/4 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-500"></div>
+          <div className="absolute top-2 right-1/4 w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse delay-700"></div>
+          <div className="absolute top-4 left-1/2 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-1000"></div>
+          <div className="absolute top-6 right-2/3 w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse delay-1200"></div>
+          <div className="absolute top-3 left-1/6 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-1500"></div>
+          <div className="absolute top-5 right-1/6 w-0.5 h-0.5 bg-blue-400 rounded-full animate-pulse delay-1800"></div>
+        </div>
+        <div className="container mx-auto flex h-16 items-center justify-between relative z-10">
           <Link to="/" className="flex items-center gap-2 font-semibold">
             <span className="text-lg tracking-tight">EchoSight</span>
           </Link>

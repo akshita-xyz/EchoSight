@@ -1,25 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Brain, AudioLines, ShieldCheck } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
-import { DemoResponse } from "@shared/api";
 import { TwinklingStars } from "@/components/ui/twinkling-stars";
 import { CursorTrail } from "@/components/ui/cursor-trail";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching demo:", error);
-    }
-  };
-
   return (
     <div className="relative min-h-screen">
       <TwinklingStars />
@@ -31,7 +16,6 @@ export default function Index() {
         <HowItWorks />
         <Gallery />
         <Contributors />
-        <div className="sr-only">{exampleFromServer}</div>
       </div>
     </div>
   );
@@ -39,7 +23,6 @@ export default function Index() {
 
 function HeroCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const hudRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const CONFIG = {
