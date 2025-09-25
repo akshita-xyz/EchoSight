@@ -9,6 +9,10 @@ export default function SiteLayout() {
 
   const nav = [
     {
+      href: isHome ? "#problem-solved" : "/#problem-solved",
+      label: "Problem (Solved!)",
+    },
+    {
       href: isHome ? "#intelligent" : "/#intelligent",
       label: "Intelligent by Design",
     },

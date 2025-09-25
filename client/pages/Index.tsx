@@ -26,6 +26,7 @@ export default function Index() {
       <CursorTrail />
       <div className="content-layer">
         <HeroCanvas />
+        <ProblemSolved />
         <Intelligent />
         <HowItWorks />
         <Gallery />
@@ -258,6 +259,44 @@ function HeroCanvas() {
   );
 }
 
+function ProblemSolved() {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  
+  return (
+    <section
+      id="problem-solved"
+      ref={ref}
+      className={`relative py-24 reveal ${inView ? "inview" : ""} bg-gradient-to-b from-black to-background overflow-hidden`}
+    >
+      <TwinklingStars />
+      <div className="container mx-auto">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Problem <span className="text-primary">(Solved!)</span>
+            </h2>
+            <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p>
+              AI-powered assistive platform designed to give visually impaired individuals a richer experience of the world through sound. Using advanced computer vision and speech synthesis, it describes objects, scenes, and environments in real time, ensuring users never miss out on life's moments.
+            </p>
+            
+            <p>
+              EchoSight also helps with practical tasks like reading exam papers, recognizing text, and navigating new surroundings, making independence and inclusion more accessible than ever before.
+            </p>
+            
+            <p className="text-2xl font-bold text-foreground">
+              Let's build this together—it's not just a startup, it's a revolution in accessibility.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Intelligent() {
   const { ref, inView } = useInView<HTMLDivElement>();
   const features = [
@@ -424,18 +463,35 @@ function Contributors() {
           <h2 className="text-3xl md:text-4xl font-bold">Contributors</h2>
         </div>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {people.map((p) => (
-            <li key={p.name} className="rounded-xl border bg-card p-4">
-              <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold">
-                  {p.initials}
-                </div>
-                <div>
-                  <p className="font-medium leading-tight">{p.name}</p>
-                </div>
-              </div>
-            </li>
-          ))}
+          {people.map((p) => {
+            const isAkshita = p.name === "Akshita Sharma";
+            const Component = isAkshita ? "a" : "div";
+            const componentProps = isAkshita 
+              ? { 
+                  href: "https://akshitasharma.vercel.app", 
+                  target: "_blank", 
+                  rel: "noopener noreferrer"
+                }
+              : {};
+            
+            return (
+              <li key={p.name}>
+                <Component 
+                  {...componentProps}
+                  className="group rounded-xl border bg-card p-4 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/30 hover:-translate-y-1 block"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/30 group-hover:scale-110">
+                      {p.initials}
+                    </div>
+                    <div>
+                      <p className="font-medium leading-tight">{p.name}</p>
+                    </div>
+                  </div>
+                </Component>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
